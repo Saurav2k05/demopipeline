@@ -1,48 +1,36 @@
 pipeline {
     agent any
 
-    tools {
-        maven "Maven"
-        jdk "JDK"
-    }
-
     stages {
 
         stage('Initialize') {
             steps {
-                echo "Starting Demo Pipeline..."
+                echo 'Starting Demo Pipeline'
             }
         }
 
         stage('Build') {
             steps {
-                bat 'mvn -version'
-                echo "Build stage completed"
+                bat 'echo Building project'
             }
         }
 
         stage('Test') {
             steps {
-                echo "Running test stage..."
+                bat 'echo Running tests'
             }
         }
 
         stage('Deploy') {
             steps {
-                echo "Deployment stage completed"
+                bat 'echo Deploying application'
             }
         }
     }
 
     post {
         always {
-            echo "Pipeline execution finished"
-        }
-        success {
-            echo "Build Successful"
-        }
-        failure {
-            echo "Build Failed"
+            echo 'Pipeline execution finished'
         }
     }
 }
