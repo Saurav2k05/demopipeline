@@ -6,7 +6,6 @@ pipeline {
     }
 
     stages {
-
         stage('Checkout Code') {
             steps {
                 git branch: 'main', url: 'https://github.com/Saurav2k05/demopipeline.git'
@@ -15,19 +14,14 @@ pipeline {
 
         stage('Build Project') {
             steps {
-                dir('your-maven-folder') { // Replace with actual folder if pom.xml is not at root
-                    bat 'mvn clean install'
-                }
+                bat 'mvn clean install'
             }
         }
 
         stage('Run Tests') {
             steps {
-                dir('your-maven-folder') {
-                    bat 'mvn test'
-                }
+                bat 'mvn test'
             }
         }
-
     }
 }
