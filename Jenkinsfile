@@ -9,7 +9,7 @@ pipeline {
 
         stage('Checkout Code') {
             steps {
-                git 'https://github.com/Saurav2k05/demopipeline.git'
+                git branch: 'main', url: 'https://github.com/Saurav2k05/demopipeline.git'
             }
         }
 
@@ -24,5 +24,6 @@ pipeline {
                 bat 'mvn test'
             }
         }
+
     }
 }
