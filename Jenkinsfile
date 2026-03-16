@@ -1,36 +1,34 @@
 pipeline {
     agent any
 
-    stages {
-
-        stage('Initialize') {
-            steps {
-                echo 'Starting Demo Pipeline'
-            }
-        }
-
-        stage('Build') {
-            steps {
-                bat 'echo Building project'
-            }
-        }
-
-        stage('Test') {
-            steps {
-                bat 'echo Running tests'
-            }
-        }
-
-        stage('Deploy') {
-            steps {
-                bat 'echo Deploying application'
-            }
-        }
+    tools {
+        maven 'Maven3'
     }
 
-    post {
-        always {
-            echo 'Pipeline execution finished'
+    stages {
+
+        stage('Checkout Code') {
+            steps {
+                git 'https://github.com/example/selenium-project.git'
+            }
+        }
+
+        stage('Build Project') {
+            steps {
+                sh 'mvn clean compile'
+            }
+        }
+
+        stage('Run Selenium Tests') {
+            steps {
+                sh 'mvn test'
+            }
+        }
+
+        stage('Archive Results') {
+            steps {
+                junit 'target/surefire-reports/*.xml'
+            }
         }
     }
 }
