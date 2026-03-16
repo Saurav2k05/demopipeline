@@ -1,26 +1,24 @@
 pipeline {
     agent any
-
-    tools {
-        maven 'MAVEN'
-    }
-
     stages {
-        stage('Checkout Code') {
+        stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/Saurav2k05/demopipeline.git'
+                git url: 'https://github.com/Saurav2k05/demopipeline.git', branch: 'main'
             }
         }
-
-        stage('Build Project') {
+        stage('Build') {
             steps {
-                bat 'mvn clean install'
+                bat 'echo Building project...'
             }
         }
-
-        stage('Run Tests') {
+        stage('Test') {
             steps {
-                bat 'mvn test'
+                bat 'echo Running tests...'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                bat 'echo Deploying...'
             }
         }
     }
