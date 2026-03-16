@@ -15,13 +15,17 @@ pipeline {
 
         stage('Build Project') {
             steps {
-                bat 'mvn clean install'
+                dir('your-maven-folder') { // Replace with actual folder if pom.xml is not at root
+                    bat 'mvn clean install'
+                }
             }
         }
 
         stage('Run Tests') {
             steps {
-                bat 'mvn test'
+                dir('your-maven-folder') {
+                    bat 'mvn test'
+                }
             }
         }
 
