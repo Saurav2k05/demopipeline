@@ -9,25 +9,19 @@ pipeline {
 
         stage('Checkout Code') {
             steps {
-                git 'https://github.com/example/selenium-project.git'
+                git 'https://github.com/Saurav2k05/demopipeline.git'
             }
         }
 
         stage('Build Project') {
             steps {
-                sh 'mvn clean compile'
+                bat 'mvn clean install'
             }
         }
 
-        stage('Run Selenium Tests') {
+        stage('Run Tests') {
             steps {
-                sh 'mvn test'
-            }
-        }
-
-        stage('Archive Results') {
-            steps {
-                junit 'target/surefire-reports/*.xml'
+                bat 'mvn test'
             }
         }
     }
